@@ -16,8 +16,7 @@ from rest_framework import status
 
 from django.contrib.auth.decorators import permission_required
 #from django.contrib.auth.mixins import PermissionRequiredMixin
-print "This is change 1."
-print "This....g"
+print "Change1....bla bla bla"
 #from rest_framework.decorators import permission_classes
 #from rest_framework import permissions
 # from rest_framework.decorators import permission_classes
