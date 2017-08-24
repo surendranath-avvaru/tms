@@ -8,4 +8,6 @@ urlpatterns = [
     url(r'^author/(?P<pk>[0-9]+)/$', views.AuthorDetail.as_view()),
 
     url(r'^login/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    url(r'^register/editor/', views.EditorRegistration.as_view()),
+    url(r'^register/user/', views.UserRegistration.as_view()),
 ]

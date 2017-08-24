@@ -7,6 +7,8 @@ from .serializers import (
     UserSerializer, 
     LibrarySerializer, 
     AuthorSerializer,
+    UserRegistrationSerializer,
+    EditorRegistrationSerializer,
 )
 from django.contrib.auth.models import User
 from rest_framework.response import Response
@@ -17,8 +19,10 @@ from rest_framework import status
 from django.contrib.auth.decorators import permission_required
 #from django.contrib.auth.mixins import PermissionRequiredMixin
 print "Change1....bla bla bla"
-#from rest_framework.decorators import permission_classes
-#from rest_framework import permissions
+
+from rest_framework.decorators import permission_classes
+from rest_framework import permissions
+
 # from rest_framework.decorators import permission_classes
 
 # Create your views here.
@@ -33,6 +37,26 @@ print "Change1....bla bla bla"
 #     libraries = Library.objects.all()
 #     data = serializers.serialize('json', libraries,)
 #     return HttpResponse(data, content_type="application/json")
+
+class EditorRegistration(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def post(self, request):
+        serializer = EditorRegistrationSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'message':'Editor has been successfully registered'})
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class UserRegistration(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def post(self, request):
+        serializer = UserRegistrationSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'message':'User has been successfully registered'})
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class UserList(APIView):
 
